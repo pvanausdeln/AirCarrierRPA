@@ -72,7 +72,7 @@ class baseInfo:
     "workOrderNumber": None
     }
 
-def TurkishPost(step):
+def FrancePost(step):
     return
 
 def main(containerList, cwd):
@@ -87,7 +87,7 @@ def main(containerList, cwd):
         fileList = [f for f in fileList if container in f] #set of steps for this number
         fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
         for step in fileList:
-            TurkishPost(step)
+            FrancePost(step)
 
 if __name__ == "__main__":
     main(sys.argv[1], sys.argv[2])
