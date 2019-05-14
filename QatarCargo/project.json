@@ -1,6 +1,6 @@
 {
-  "name": "Qantas Cargo",
-  "description": "Qantas Cargo RPA Tracking",
+  "name": "Qatar Cargo",
+  "description": "Qatar Cargo RPA Tracking",
   "main": "Main.xaml",
   "dependencies": {
     "Microsoft.Activities.Extensions": "[2.0.6.9]",
