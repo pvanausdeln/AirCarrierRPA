@@ -53,6 +53,7 @@
       <AssemblyReference>UiPath.Python</AssemblyReference>
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="620,6371" sap2010:WorkflowViewState.IdRef="Sequence_20">
@@ -352,7 +353,7 @@
                             <ui:CreateDirectory ContinueOnError="{x:Null}" DisplayName="Create Directory" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="CreateDirectory_1" Path="./ContainerInformation/" />
                           </If.Else>
                         </If>
-                        <ui:WriteTextFile DisplayName="Write Text File" FileName="[&quot;./ContainerInformation/&quot; + item.ToString + &quot;Step&quot; + columnCount.ToString + &quot;.json&quot;]" sap:VirtualizedContainerService.HintSize="464,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jsonString]" />
+                        <ui:WriteTextFile DisplayName="Write Text File" FileName="[&quot;./ContainerInformation/&quot; + item.ToString + &quot;Step&quot; + ExtractDataTable.Rows.IndexOf(row).ToString+ &quot;.json&quot;]" sap:VirtualizedContainerService.HintSize="464,87" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[jsonString]" />
                       </Sequence>
                     </ActivityAction>
                   </ui:ForEachRow.Body>
