@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="660,5570" sap2010:WorkflowViewState.IdRef="Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="660,6019" sap2010:WorkflowViewState.IdRef="Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -55,13 +55,13 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="620,5450" sap2010:WorkflowViewState.IdRef="Sequence_20">
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="620,5899" sap2010:WorkflowViewState.IdRef="Sequence_20">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="598,5326" sap2010:WorkflowViewState.IdRef="Sequence_19">
+    <Sequence sap:VirtualizedContainerService.HintSize="598,5775" sap2010:WorkflowViewState.IdRef="Sequence_19">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:IEnumerable(x:Object)" Name="Waybills" />
         <Variable x:TypeArguments="scg:IEnumerable(x:Object)" Name="WorkOrders" />
@@ -115,7 +115,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:OpenBrowser>
-      <Sequence sap:VirtualizedContainerService.HintSize="576,4518" sap2010:WorkflowViewState.IdRef="Sequence_18">
+      <Sequence sap:VirtualizedContainerService.HintSize="576,4967" sap2010:WorkflowViewState.IdRef="Sequence_18">
         <Sequence.Variables>
           <Variable x:TypeArguments="p:PythonObject" Name="Script" />
           <Variable x:TypeArguments="s:String[]" Name="splitWaybill" />
@@ -126,13 +126,13 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="554,4011" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Waybills]">
+        <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="554,4460" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Waybills]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
               </ActivityAction.Argument>
-              <Sequence sap:VirtualizedContainerService.HintSize="538,3877" sap2010:WorkflowViewState.IdRef="Sequence_22">
+              <Sequence sap:VirtualizedContainerService.HintSize="538,4326" sap2010:WorkflowViewState.IdRef="Sequence_22">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Int32" Default="0" Name="index" />
                   <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="infoArray" />
@@ -209,7 +209,7 @@
                 </If>
                 <ui:UiElementExists DisplayName="Element Exists 'DIV'" Exists="[elementExists]" sap:VirtualizedContainerService.HintSize="516,106" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
                   <ui:UiElementExists.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="7ec043e9b2abb474d09fa426fefe8189" Selector="&lt;html app='chrome.exe' title='AWB Tracking - Korean Air Cargo' /&gt;&lt;webctrl aaname='View All' parentid='react-tabs-5' tag='A' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="7ec043e9b2abb474d09fa426fefe8189" Selector="&lt;html app='chrome.exe' title='AWB Tracking - Korean Air Cargo' /&gt;&lt;webctrl aaname='View All' omit:parentid='react-tabs-7' tag='A' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
                   </ui:UiElementExists.Target>
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
@@ -238,15 +238,15 @@
                         </ui:CursorPosition>
                       </ui:Click.CursorPosition>
                       <ui:Click.Target>
-                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7ec043e9b2abb474d09fa426fefe8189" Selector="&lt;html app='chrome.exe' title='AWB Tracking - Korean Air Cargo' /&gt;&lt;webctrl aaname='View All' parentid='react-tabs-5' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7ec043e9b2abb474d09fa426fefe8189" Selector="&lt;html app='chrome.exe' title='AWB Tracking - Korean Air Cargo' /&gt;&lt;webctrl aaname='View All' omit:parentid='react-tabs-5' tag='A' /&gt;" WaitForReady="INTERACTIVE" />
                       </ui:Click.Target>
                     </ui:Click>
                   </If.Then>
                 </If>
-                <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="516,51" sap2010:WorkflowViewState.IdRef="Sequence_33">
+                <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="516,500" sap2010:WorkflowViewState.IdRef="Sequence_33">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
@@ -264,7 +264,7 @@
                           </sap:WorkflowViewStateService.ViewState>
                           <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'DIV  react-tabs-5'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='tab-content' idx='1'/&gt;&lt;webctrl tag='div' class='tab-pane fade active show' idx='1'/&gt;&lt;webctrl tag='div' class='form-group form-row' idx='1'/&gt;&lt;webctrl tag='div' class='col-lg-6 col-12' idx='1'/&gt;&lt;webctrl tag='div' class='timeLineStatus cargoStatus' idx='1'/&gt;&lt;webctrl tag='div' class='statusItems'/&gt;&lt;/row&gt;&lt;column exact='1' name='Airport' attr='text'&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='tab-content' idx='1'/&gt;&lt;webctrl tag='div' class='tab-pane fade active show' idx='1'/&gt;&lt;webctrl tag='div' class='form-group form-row' idx='1'/&gt;&lt;webctrl tag='div' class='col-lg-6 col-12' idx='1'/&gt;&lt;webctrl tag='div' class='timeLineStatus cargoStatus' idx='1'/&gt;&lt;webctrl tag='div' class='statusItems'/&gt;&lt;webctrl tag='span' class='loc' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Event' attr='text'&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='tab-content' idx='1'/&gt;&lt;webctrl tag='div' class='tab-pane fade active show' idx='1'/&gt;&lt;webctrl tag='div' class='form-group form-row' idx='1'/&gt;&lt;webctrl tag='div' class='col-lg-6 col-12' idx='1'/&gt;&lt;webctrl tag='div' class='timeLineStatus cargoStatus' idx='1'/&gt;&lt;webctrl tag='div' class='statusItems'/&gt;&lt;webctrl tag='div' class='statusArea mt-1' idx='1'/&gt;&lt;webctrl tag='label'/&gt;&lt;/column&gt;&lt;column exact='1' name='Time' attr='text'&gt;&lt;webctrl tag='div' idx='1'/&gt;&lt;webctrl tag='div' class='tab-content' idx='1'/&gt;&lt;webctrl tag='div' class='tab-pane fade active show' idx='1'/&gt;&lt;webctrl tag='div' class='form-group form-row' idx='1'/&gt;&lt;webctrl tag='div' class='col-lg-6 col-12' idx='1'/&gt;&lt;webctrl tag='div' class='timeLineStatus cargoStatus' idx='1'/&gt;&lt;webctrl tag='div' class='statusItems'/&gt;&lt;webctrl tag='div' class='statusArea mt-1' idx='1'/&gt;&lt;webctrl tag='em' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="314,106" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="100">
                             <ui:ExtractData.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b28995cd7ea5656358a441c79a3b1a06" Selector="&lt;webctrl id='react-tabs-5' tag='DIV' /&gt;" WaitForReady="COMPLETE" />
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b28995cd7ea5656358a441c79a3b1a06" Selector="&lt;webctrl id='react-tabs-*' tag='DIV' /&gt;" WaitForReady="COMPLETE" />
                             </ui:ExtractData.Target>
                           </ui:ExtractData>
                         </Sequence>
