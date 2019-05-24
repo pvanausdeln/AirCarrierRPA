@@ -4,11 +4,11 @@
   "main": "Main.xaml",
   "dependencies": {
     "Microsoft.Activities.Extensions": "[2.0.6.9]",
-    "UiPath.Excel.Activities": "[2.5.3]",
-    "UiPath.Mail.Activities": "[1.4.0]",
+    "UiPath.Excel.Activities": "[2.6.0]",
+    "UiPath.Mail.Activities": "[1.5.0]",
     "UiPath.Python.Activities": "[1.1.6863.33404]",
-    "UiPath.System.Activities": "[19.4.0]",
-    "UiPath.UIAutomation.Activities": "[19.4.1]",
+    "UiPath.System.Activities": "[19.5.0]",
+    "UiPath.UIAutomation.Activities": "[19.5.0]",
     "UiPath.WebAPI.Activities": "[1.4.1]"
   },
   "schemaVersion": "3.2",
