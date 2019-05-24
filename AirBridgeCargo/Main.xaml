@@ -298,7 +298,7 @@
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <maes:AddToDictionary x:TypeArguments="x:String, x:String" Dictionary="[infoArray]" DisplayName="Add to dictionary" sap:VirtualizedContainerService.HintSize="378,138" sap2010:WorkflowViewState.IdRef="AddToDictionary`2_7" Key="[ExtractDataTable.Rows(0).Item(columnCount).ToString]" Value="[ExtractDataTable.Rows(index).Item(columnCount).ToString]" />
+                            <maes:AddToDictionary x:TypeArguments="x:String, x:String" Dictionary="[infoArray]" DisplayName="Add to dictionary" sap:VirtualizedContainerService.HintSize="378,138" sap2010:WorkflowViewState.IdRef="AddToDictionary`2_7" Key="[ExtractDataTable.Rows(0).Item(columnCount).ToString]" Value="[ExtractDataTable.Rows(ExtractDataTable.Rows.IndexOf(row)).Item(columnCount).ToString]" />
                             <Assign sap:VirtualizedContainerService.HintSize="378,60" sap2010:WorkflowViewState.IdRef="Assign_11">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:Int32">[columnCount]</OutArgument>
