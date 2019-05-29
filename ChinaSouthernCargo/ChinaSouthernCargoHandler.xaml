@@ -80,7 +80,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;The exception was:&quot; + Environment.NewLine + Environment.NewLine + errorInfo.Exception.ToString]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="314,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;SkyTeam Cargo RPA Exception at &quot; + Datetime.Now.ToLongTimeString]" To="peter.vanausdeln@blumeglobal.com">
+    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;The exception was:&quot; + Environment.NewLine + Environment.NewLine + errorInfo.Exception.ToString]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="314,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;china Southern RPA Exception at &quot; + Datetime.Now.ToLongTimeString]" To="peter.vanausdeln@blumeglobal.com">
       <ui:SendOutlookMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
       </ui:SendOutlookMail.Files>
