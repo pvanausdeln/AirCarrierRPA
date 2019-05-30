@@ -71,8 +71,43 @@ class baseInfo:
     "voyageNumber": None,
     "workOrderNumber": None
     }
+def EmiratesSkyPostEvent(event):
+    if(event.find("Delivered") != -1):
+        return ("DLV", "Delivered")
+    elif(event.find("Received from Flight") != -1):
+        return ("RCF", "Received from Flight")
+    elif(event.find("Document Delivered") != -1):
+        return ('DDC', "Document Delivered")
+    elif(event.find("Arrived") != -1):
+        return ('ARR', "Arrived")
+    elif(event.find("Departed") != -1):
+        return ('DEP', "Departed")
+    elif(event.find("Manifested") != -1):
+        return ("MAN", "Manifested")
+    elif(event.find("Booking Confirmed") != -1):
+        return ('BKG', "Booking Confirmed")
+    elif(event.find("Received from Shipper") != -1):
+        return ('RCS', "Received from Shipper")
+    return (None, None)
 
 def EmiratesSkyPost(step):
+    with open(step) as json_file:  
+        data = json.load(json_file)
+    postJson = copy.deepcopy(baseInfo.shipmentEventBase)
+    postJson["unitID"]=data.get("Waybill")
+    postJson["location"]=data.get("Station")
+    postJson["eventTime"]=data.get("Status Date")
+    postJson["eventName"], postJson["eventCode"]=EmiratesSkyPostEvent(data.get("Status"))
+    postJson["notes"]=data["Flight Details"]
+    #postJson["weight"] = data.get("Weight")
+    #postJson["quantity"] = data.get("Pieces")
+    #postJson["volume"]=data.get("Volume")
+    if(postJson["eventCode"] == None):
+        return
+    headers = {'content-type':'application/json'}
+    r = requests.post(baseInfo.postURL, data = json.dumps(postJson), headers = headers, verify = False)
+    print(json.dumps(postJson))
+    print(r)
     return
 
 def main(containerList, cwd):
