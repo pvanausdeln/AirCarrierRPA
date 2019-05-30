@@ -72,8 +72,61 @@ class baseInfo:
     "workOrderNumber": None
     }
 
+def KLMEvent(event):
+    if(event.find("BKG") != -1):
+        return ("BKG", "Shipment Booked")
+    elif(event.find("FOH") != -1):
+        return ("FOH", "Freight on Hand")
+    elif(event.find("RCS") != -1):
+        return ('RCS', "Received from Shipper")
+    elif(event.find("DEP") != -1):
+        return ('DEP', "Departed on Flight")
+    elif(event.find("ARR") != -1):
+        return ('ARR', "Arrived")
+    elif(event.find("RCF") != -1):
+        return ("RCF", "Received from Flight")
+    elif(event.find("NFD") != -1):
+        return ('NFD', "Consignee/Agent notified of arrival")
+    elif(event.find("DLV") != -1):
+        return ('DLV', "Delivered")
+    return (None, None)
+
 def KLMPost(step):
+    with open(step) as json_file:  
+        data = json.load(json_file)
+    postJson = copy.deepcopy(baseInfo.shipmentEventBase)
+    postJson["resolvedEventSource"] = "KLM RPA"
+    postJson["reportSource"] = "AirEvent"
+    postJson["workOrderNumber"] = data.get("Work Order")
+    postJson["shipmentReferenceNumber"] = data.get("Reference Number")
+    postJson["unitId"] = data.get("Waybill")
+    postJson["location"] = data.get("Airport")
+    postJson["eventCode"], postJson["eventName"] = KLMEvent(data.get("EventCode"))
+    postJson["carrierName"] = data.get("Air Carrier")
+    if(postJson["eventCode"] == None):
+        return
+    dt = datetime.datetime.strptime(data.get("Datetime"), "%d%b %H:%M")
+    dt = dt.replace(year=datetime.datetime.now().year)
+    if(dt.date() > datetime.datetime.today().date()):
+        dt = dt.replace(year = datetime.datetime.year-1)
+    postJson["eventTime"] = dt.strftime('%m-%d-%Y %H:%M:%S')
+    print(json.dumps(postJson))
+    #postJson["weight"] = data.get("Weight")
+    #postJson["quantity"] = data.get("Pieces")
+    headers = {'content-type':'application/json'}
+    r = requests.post(baseInfo.postURL, data = json.dumps(postJson), headers = headers, verify = False)
+    print(json.dumps(postJson))
+    print(r)
     return
+
+def testMain(container): #test main
+    fileList = glob.glob(os.getcwd() + "\\ContainerInformation\\"+container+"Step*.json", recursive = True) #get all the json steps
+    if (not fileList):
+        return
+    fileList = [f for f in fileList if container in f] #set of steps for this number
+    fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
+    for step in fileList:
+        KLMPost(step)
 
 def main(containerList, cwd):
     path=""
@@ -90,4 +143,5 @@ def main(containerList, cwd):
             KLMPost(step)
 
 if __name__ == "__main__":
+    #testMain(sys.argv[1])
     main(sys.argv[1], sys.argv[2])
