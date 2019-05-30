@@ -14,7 +14,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>478,1000</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>376,813</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GlobalHandler_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -67,7 +67,7 @@
       <AssemblyReference>UiPath.Python</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="This sequence steps in during execution when the project encounters an unmanaged error.&#xA;&#xA;Important: Arguments 'errorInfo' and 'result' should not be removed." DisplayName="Global Exception Handler" sap:VirtualizedContainerService.HintSize="438,880" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence sap2010:Annotation.AnnotationText="This sequence steps in during execution when the project encounters an unmanaged error.&#xA;&#xA;Important: Arguments 'errorInfo' and 'result' should not be removed." DisplayName="Global Exception Handler" sap:VirtualizedContainerService.HintSize="336,693" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="answer" />
       <Variable x:TypeArguments="x:Int32" Default="0" Name="retry" />
@@ -78,23 +78,12 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="416,347" sap2010:WorkflowViewState.IdRef="CommentOut_1">
-      <ui:CommentOut.Body>
-        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="336,269" sap2010:WorkflowViewState.IdRef="Sequence_2">
-          <sap:WorkflowViewStateService.ViewState>
-            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-            </scg:Dictionary>
-          </sap:WorkflowViewStateService.ViewState>
-          <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;The exception was:&quot; + Environment.NewLine + Environment.NewLine + errorInfo.Exception.ToString]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="314,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;British Cargo RPA Exception at &quot; + Datetime.Now.ToLongTimeString]" To="peter.vanausdeln@blumeglobal.com">
-            <ui:SendOutlookMail.Files>
-              <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
-            </ui:SendOutlookMail.Files>
-          </ui:SendOutlookMail>
-        </Sequence>
-      </ui:CommentOut.Body>
-    </ui:CommentOut>
-    <Assign sap2010:Annotation.AnnotationText="Choose the action to be taken after the Global Exception Handler steps in: &#xA;&#xA;Continue - The exception is re-thrown.&#xA;&#xA;Ignore - The exception is ignored, and the execution continues from the next activity.&#xA;&#xA;Retry - The activity which threw the exception is retried.&#xA;&#xA;Abort - The execution stops after running the current handler." DisplayName="Choose Next Behavior" sap:VirtualizedContainerService.HintSize="416,297" sap2010:WorkflowViewState.IdRef="Assign_4">
+    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;The exception was:&quot; + Environment.NewLine + Environment.NewLine + errorInfo.Exception.ToString + environment.NewLine + &quot;The exception occurred in this activity: &quot; + errorInfo.ActivityInfo.ToString]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="314,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;British Cargo RPA Exception at &quot; + Datetime.Now.ToLongTimeString]" To="peter.vanausdeln@blumeglobal.com">
+      <ui:SendOutlookMail.Files>
+        <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
+      </ui:SendOutlookMail.Files>
+    </ui:SendOutlookMail>
+    <Assign sap2010:Annotation.AnnotationText="Choose the action to be taken after the Global Exception Handler steps in: &#xA;&#xA;Continue - The exception is re-thrown.&#xA;&#xA;Ignore - The exception is ignored, and the execution continues from the next activity.&#xA;&#xA;Retry - The activity which threw the exception is retried.&#xA;&#xA;Abort - The execution stops after running the current handler." DisplayName="Choose Next Behavior" sap:VirtualizedContainerService.HintSize="314,297" sap2010:WorkflowViewState.IdRef="Assign_4">
       <Assign.To>
         <OutArgument x:TypeArguments="uico:ErrorAction">[result]</OutArgument>
       </Assign.To>

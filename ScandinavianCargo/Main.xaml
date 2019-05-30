@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="660,3600" sap2010:WorkflowViewState.IdRef="Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing" xmlns:sd1="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="660,3114" sap2010:WorkflowViewState.IdRef="Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -55,13 +55,13 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="620,3480" sap2010:WorkflowViewState.IdRef="Sequence_20">
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="620,2994" sap2010:WorkflowViewState.IdRef="Sequence_20">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="598,3356" sap2010:WorkflowViewState.IdRef="Sequence_19">
+    <Sequence sap:VirtualizedContainerService.HintSize="598,2870" sap2010:WorkflowViewState.IdRef="Sequence_19">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:IEnumerable(x:Object)" Name="Waybills" />
         <Variable x:TypeArguments="scg:IEnumerable(x:Object)" Name="WorkOrders" />
@@ -115,7 +115,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:OpenBrowser>
-      <Sequence sap:VirtualizedContainerService.HintSize="576,2548" sap2010:WorkflowViewState.IdRef="Sequence_18">
+      <Sequence sap:VirtualizedContainerService.HintSize="576,2062" sap2010:WorkflowViewState.IdRef="Sequence_18">
         <Sequence.Variables>
           <Variable x:TypeArguments="p:PythonObject" Name="Script" />
           <Variable x:TypeArguments="s:String[]" Name="splitWaybill" />
@@ -126,17 +126,17 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="554,2041" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Waybills]">
+        <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="554,1555" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Waybills]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
               </ActivityAction.Argument>
-              <Sequence sap:VirtualizedContainerService.HintSize="486,1907" sap2010:WorkflowViewState.IdRef="Sequence_22">
+              <Sequence sap:VirtualizedContainerService.HintSize="486,1421" sap2010:WorkflowViewState.IdRef="Sequence_22">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Int32" Default="0" Name="index" />
                   <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="infoArray" />
-                  <Variable x:TypeArguments="sd1:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
+                  <Variable x:TypeArguments="sd:DataTable" Default="[New System.Data.DataTable]" Name="ExtractDataTable" />
                   <Variable x:TypeArguments="x:String" Name="jsonString" />
                   <Variable x:TypeArguments="x:Boolean" Name="pathExists" />
                   <Variable x:TypeArguments="x:Boolean" Name="captcha" />
@@ -156,18 +156,12 @@
                     <InArgument x:TypeArguments="s:String[]">[Split(item.ToString, "-")]</InArgument>
                   </Assign.Value>
                 </Assign>
-                <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT'" EmptyField="True" sap:VirtualizedContainerService.HintSize="464,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="[item.ToString]">
+                <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT  txtSRF0'" EmptyField="False" sap:VirtualizedContainerService.HintSize="464,134" sap2010:WorkflowViewState.IdRef="TypeInto_1" SendWindowMessages="False" SimulateType="False" Text="[splitWaybill(1)]">
                   <ui:TypeInto.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="fc4644a1a96632ace4223d9bc0f8443b" Selector="&lt;html app='chrome.exe' title='AIR FRANCE KLM MARTINAIR Cargo - myCargo' /&gt;&lt;webctrl id='awb-textarea' tag='TEXTAREA' /&gt;" WaitForReady="INTERACTIVE" />
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="b726b929e186b94bf350812250fe32c3" Selector="&lt;html app='chrome.exe' title='AWB Tracking - SAS Cargo/Airfreight' /&gt;&lt;webctrl id='iframe1' tag='IFRAME' /&gt;&lt;webctrl id='txtSRF0' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
                   </ui:TypeInto.Target>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
                 </ui:TypeInto>
-                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap:VirtualizedContainerService.HintSize="464,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'INPUT  btnSearch1'" sap:VirtualizedContainerService.HintSize="464,106" sap2010:WorkflowViewState.IdRef="Click_1" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
                   <ui:Click.CursorPosition>
                     <ui:CursorPosition Position="Center">
                       <ui:CursorPosition.OffsetX>
@@ -179,93 +173,23 @@
                     </ui:CursorPosition>
                   </ui:Click.CursorPosition>
                   <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="99e505761ca696096bfe0b560bac19c8" Selector="&lt;html app='chrome.exe' title='AIR FRANCE KLM MARTINAIR Cargo - myCargo' /&gt;&lt;webctrl tag='BUTTON' type='submit' /&gt;" WaitForReady="INTERACTIVE" />
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="d7931ca4c5b991bcd759190024587b64" Selector="&lt;html app='chrome.exe' title='AWB Tracking - SAS Cargo/Airfreight' /&gt;&lt;webctrl id='iframe1' tag='IFRAME' /&gt;&lt;webctrl id='btnSearch1' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
                   </ui:Click.Target>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
                 </ui:Click>
-                <Delay Duration="00:00:03" sap:VirtualizedContainerService.HintSize="464,22" sap2010:WorkflowViewState.IdRef="Delay_1" />
                 <ui:UiElementExists DisplayName="Element Exists 'DIV'" Exists="[elementExists]" sap:VirtualizedContainerService.HintSize="464,106" sap2010:WorkflowViewState.IdRef="UiElementExists_3">
                   <ui:UiElementExists.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="7270726371303afac3e1bc19a7e96049" Selector="&lt;html app='chrome.exe' title='AIR FRANCE KLM MARTINAIR Cargo - myCargo' /&gt;&lt;webctrl aaname=' &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;List view &#x9;&#x9;&#x9;&#x9;&#x9;' parentid='nodeToRenderAsPDF' tag='DIV' /&gt;" TimeoutMS="3000" WaitForReady="COMPLETE" />
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="7270726371303afac3e1bc19a7e96049" Selector="&lt;html app='chrome.exe' title='AWB Tracking - SAS Cargo/Airfreight' /&gt;&lt;webctrl id='iframe1' tag='IFRAME' /&gt;&lt;webctrl id='msgDialogDiv' tag='DIV' /&gt;" TimeoutMS="3000" WaitForReady="COMPLETE" />
                   </ui:UiElementExists.Target>
                 </ui:UiElementExists>
-                <If Condition="[elementExists]" sap:VirtualizedContainerService.HintSize="464,208" sap2010:WorkflowViewState.IdRef="If_4">
-                  <If.Else>
-                    <ui:Continue sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_2" />
-                  </If.Else>
-                </If>
-                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'DIV'" sap:VirtualizedContainerService.HintSize="464,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
-                  <ui:Click.CursorPosition>
-                    <ui:CursorPosition Position="Center">
-                      <ui:CursorPosition.OffsetX>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetX>
-                      <ui:CursorPosition.OffsetY>
-                        <InArgument x:TypeArguments="x:Int32" />
-                      </ui:CursorPosition.OffsetY>
-                    </ui:CursorPosition>
-                  </ui:Click.CursorPosition>
-                  <ui:Click.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="ddddc4b6e3c3828b8c7b8ecfa893b07d" Selector="&lt;html app='chrome.exe' title='AIR FRANCE KLM MARTINAIR Cargo - myCargo' /&gt;&lt;webctrl aaname=' &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;List view &#x9;&#x9;&#x9;&#x9;&#x9;' parentid='nodeToRenderAsPDF' tag='DIV' /&gt;" WaitForReady="INTERACTIVE" />
-                  </ui:Click.Target>
-                </ui:Click>
-                <ui:UiElementExists DisplayName="Element Exists 'IMG  imgCaptcha'" Exists="[captcha]" sap:VirtualizedContainerService.HintSize="464,106" sap2010:WorkflowViewState.IdRef="UiElementExists_2">
-                  <ui:UiElementExists.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="1bd332b4e72807401fab36d2b1b40ed8" Selector="&lt;html app='chrome.exe' title='Shipment Tracking | Turkish Cargo Corporate' /&gt;&lt;webctrl id='imgCaptcha' tag='IMG' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
-                  </ui:UiElementExists.Target>
-                </ui:UiElementExists>
-                <If Condition="[captcha]" sap:VirtualizedContainerService.HintSize="464,51" sap2010:WorkflowViewState.IdRef="If_3">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
+                <If Condition="[elementExists]" sap:VirtualizedContainerService.HintSize="464,440" sap2010:WorkflowViewState.IdRef="If_4">
                   <If.Then>
-                    <Sequence sap:VirtualizedContainerService.HintSize="336,786" sap2010:WorkflowViewState.IdRef="Sequence_27">
+                    <Sequence sap:VirtualizedContainerService.HintSize="336,292" sap2010:WorkflowViewState.IdRef="Sequence_32">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:GetOCRText WordsInfo="{x:Null}" DisplayName="Get OCR Text 'IMG  imgCaptcha'" sap:VirtualizedContainerService.HintSize="314,168" sap2010:WorkflowViewState.IdRef="GetOCRText_1">
-                        <ui:GetOCRText.OCREngine>
-                          <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd:Rectangle, x:String))">
-                            <ActivityFunc.Argument>
-                              <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
-                            </ActivityFunc.Argument>
-                            <ui:GoogleOCR FilterRegion="{x:Null}" Text="{x:Null}" AllowedCharacters="" DeniedCharacters="" DisplayName="Tesseract OCR" ExtractWords="False" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="GoogleOCR_1" Image="[Image]" Invert="False" Language="eng" Profile="Screen" Scale="2" />
-                          </ActivityFunc>
-                        </ui:GetOCRText.OCREngine>
-                        <ui:GetOCRText.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="1bd332b4e72807401fab36d2b1b40ed8" Selector="&lt;html app='chrome.exe' title='Shipment Tracking | Turkish Cargo Corporate' /&gt;&lt;webctrl id='imgCaptcha' tag='IMG' /&gt;" WaitForReady="INTERACTIVE" />
-                        </ui:GetOCRText.Target>
-                        <ui:GetOCRText.Text>
-                          <OutArgument x:TypeArguments="x:String">[captchaText]</OutArgument>
-                        </ui:GetOCRText.Text>
-                      </ui:GetOCRText>
-                      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT  Captcha'" EmptyField="False" sap:VirtualizedContainerService.HintSize="314,134" sap2010:WorkflowViewState.IdRef="TypeInto_2" SendWindowMessages="False" SimulateType="False" Text="[captchaText]">
-                        <ui:TypeInto.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="a0f4fcdf22df2b5bfdd3dbca44bd99e5" Selector="&lt;html app='chrome.exe' title='Shipment Tracking | Turkish Cargo Corporate' /&gt;&lt;webctrl id='Captcha' tag='INPUT' /&gt;" WaitForReady="INTERACTIVE" />
-                        </ui:TypeInto.Target>
-                      </ui:TypeInto>
-                      <ui:TypeInto DelayBefore="{x:Null}" DelayBetweenKeys="{x:Null}" DelayMS="{x:Null}" Activate="True" ClickBeforeTyping="False" DisplayName="Type Into 'INPUT'" EmptyField="False" sap:VirtualizedContainerService.HintSize="314,134" sap2010:WorkflowViewState.IdRef="TypeInto_4" SendWindowMessages="False" SimulateType="True" Text="[item.ToString]">
-                        <ui:TypeInto.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="4ea64dc9c08a659a7a807025fb2d8116" Selector="&lt;html app='chrome.exe' title='AIR FRANCE KLM MARTINAIR Cargo - myCargo' /&gt;&lt;webctrl id='awb-textarea' tag='TEXTAREA' /&gt;" WaitForReady="INTERACTIVE" />
-                        </ui:TypeInto.Target>
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
-                      </ui:TypeInto>
-                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap:VirtualizedContainerService.HintSize="314,106" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="True">
+                      <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'SPAN'" sap:VirtualizedContainerService.HintSize="314,106" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
                         <ui:Click.CursorPosition>
                           <ui:CursorPosition Position="Center">
                             <ui:CursorPosition.OffsetX>
@@ -277,69 +201,13 @@
                           </ui:CursorPosition>
                         </ui:Click.CursorPosition>
                         <ui:Click.Target>
-                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="e7fd6cda92638d9b2c1ac80d00777ae0" Selector="&lt;html app='chrome.exe' title='AIR FRANCE KLM MARTINAIR Cargo - myCargo' /&gt;&lt;webctrl tag='BUTTON' type='submit' /&gt;" WaitForReady="INTERACTIVE" />
+                          <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="7525d24edca9f099a0f2a15d1eb91091" Selector="&lt;html app='chrome.exe' title='AWB Tracking - SAS Cargo/Airfreight' /&gt;&lt;webctrl id='iframe1' tag='IFRAME' /&gt;&lt;webctrl aaname='OK' tag='SPAN' /&gt;" WaitForReady="INTERACTIVE" />
                         </ui:Click.Target>
-                        <sap:WorkflowViewStateService.ViewState>
-                          <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                          </scg:Dictionary>
-                        </sap:WorkflowViewStateService.ViewState>
                       </ui:Click>
+                      <ui:Continue sap:VirtualizedContainerService.HintSize="314,22" sap2010:WorkflowViewState.IdRef="Continue_2" />
                     </Sequence>
                   </If.Then>
                 </If>
-                <ui:UiElementExists DisplayName="Element Exists 'DIV'" Exists="[elementExists]" sap:VirtualizedContainerService.HintSize="464,51" sap2010:WorkflowViewState.IdRef="UiElementExists_1">
-                  <ui:UiElementExists.Target>
-                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" InformativeScreenshot="a44d306a5af66fad98463c4030c617a2" Selector="&lt;html app='chrome.exe' title='AIR FRANCE KLM MARTINAIR Cargo - myCargo' /&gt;&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;span&amp;gt;div' isleaf='1' parentid='tnt-search-single-all' parentname='tntMultipleSearch.track_multiple_form' tag='DIV' class='color_red ng-scope' /&gt;" TimeoutMS="3000" WaitForReady="INTERACTIVE" />
-                  </ui:UiElementExists.Target>
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                </ui:UiElementExists>
-                <If Condition="[elementExists]" sap:VirtualizedContainerService.HintSize="464,51" sap2010:WorkflowViewState.IdRef="If_1">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <If.Then>
-                    <ui:Continue sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_1" />
-                  </If.Then>
-                </If>
-                <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="464,51" sap2010:WorkflowViewState.IdRef="Sequence_29">
-                  <sap:WorkflowViewStateService.ViewState>
-                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
-                      <x:Boolean x:Key="IsPinned">False</x:Boolean>
-                    </scg:Dictionary>
-                  </sap:WorkflowViewStateService.ViewState>
-                  <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'AIRFRANCE Page'" sap:VirtualizedContainerService.HintSize="414,376" sap2010:WorkflowViewState.IdRef="BrowserScope_1" InformativeScreenshot="19a32e8f980370a9e6e1f3376e8d70e8" Selector="&lt;html app='chrome.exe' title='AIR FRANCE KLM MARTINAIR Cargo - myCargo' /&gt;">
-                    <ui:BrowserScope.Body>
-                      <ActivityAction x:TypeArguments="x:Object">
-                        <ActivityAction.Argument>
-                          <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
-                        </ActivityAction.Argument>
-                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336,230" sap2010:WorkflowViewState.IdRef="Sequence_28">
-                          <sap:WorkflowViewStateService.ViewState>
-                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                            </scg:Dictionary>
-                          </sap:WorkflowViewStateService.ViewState>
-                          <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'DIV  list-view'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div'/&gt;&lt;/row&gt;&lt;column exact='1' name='Datetime' attr='text'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='l-progress__date' idx='1'/&gt;&lt;webctrl tag='span' class='ng-binding ng-scope' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Airport' attr='text'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' class='l-progress__station ng-binding' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='EventCode' attr='text'&gt;&lt;webctrl tag='div'/&gt;&lt;webctrl tag='div' idx='3'/&gt;&lt;webctrl tag='div' class='milestone-history l-progress__milestone ng-binding' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="314,106" sap2010:WorkflowViewState.IdRef="ExtractData_1" MaxNumberOfResults="100">
-                            <ui:ExtractData.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="8b71e065c78b802eac4c4e59752bb5d7" Selector="&lt;webctrl id='list-view' tag='DIV' /&gt;" WaitForReady="COMPLETE" />
-                            </ui:ExtractData.Target>
-                          </ui:ExtractData>
-                        </Sequence>
-                      </ActivityAction>
-                    </ui:BrowserScope.Body>
-                  </ui:BrowserScope>
-                </Sequence>
                 <Assign sap:VirtualizedContainerService.HintSize="464,60" sap2010:WorkflowViewState.IdRef="Assign_8">
                   <Assign.To>
                     <OutArgument x:TypeArguments="x:Int32">[dtCount]</OutArgument>
@@ -350,9 +218,9 @@
                 </Assign>
                 <ui:ForEachRow CurrentIndex="{x:Null}" DataTable="[ExtractDataTable]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="464,51" sap2010:WorkflowViewState.IdRef="ForEachRow_1">
                   <ui:ForEachRow.Body>
-                    <ActivityAction x:TypeArguments="sd1:DataRow">
+                    <ActivityAction x:TypeArguments="sd:DataRow">
                       <ActivityAction.Argument>
-                        <DelegateInArgument x:TypeArguments="sd1:DataRow" Name="row" />
+                        <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                       </ActivityAction.Argument>
                       <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="486,2160" sap2010:WorkflowViewState.IdRef="Sequence_25">
                         <Sequence.Variables>

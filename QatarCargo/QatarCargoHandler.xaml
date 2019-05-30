@@ -14,7 +14,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>376,813</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>376,773</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GlobalHandler_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -79,7 +79,7 @@
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;The exception was:&quot; + Environment.NewLine + Environment.NewLine + errorInfo.Exception.ToString]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="314,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;Qatar Cargo RPA Exception at &quot; + Datetime.Now.ToLongTimeString]" To="peter.vanausdeln@blumeglobal.com">
+    <ui:SendOutlookMail Account="{x:Null}" Bcc="{x:Null}" Cc="{x:Null}" MailMessage="{x:Null}" TimeoutMS="{x:Null}" Body="[&quot;The exception was:&quot; + Environment.NewLine + Environment.NewLine + errorInfo.Exception.ToString + environment.NewLine + &quot;The exception occurred in this activity: &quot; + errorInfo.ActivityInfo.ToString]" DisplayName="Send Outlook Mail Message" sap:VirtualizedContainerService.HintSize="314,145" sap2010:WorkflowViewState.IdRef="SendOutlookMail_1" IsBodyHtml="False" IsDraft="False" Subject="[&quot;Qatar Cargo RPA Exception at &quot; + Datetime.Now.ToLongTimeString]" To="peter.vanausdeln@blumeglobal.com">
       <ui:SendOutlookMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
       </ui:SendOutlookMail.Files>
