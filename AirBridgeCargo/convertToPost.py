@@ -110,7 +110,6 @@ def AirBridgePost(step):
         return
     data["EventTime"] = ''.join(x for x in data["EventTime"] if x in string.printable)
     postJson["eventTime"] = datetime.datetime.strptime(data.get("EventTime").title(), '%d%b%y%H:%M').strftime('%m-%d-%Y %H:%M:%S')
-    print(json.dumps(postJson))
     #postJson["weight"] = data.get("Weight")
     #postJson["quantity"] = data.get("Pieces")
     headers = {'content-type':'application/json'}

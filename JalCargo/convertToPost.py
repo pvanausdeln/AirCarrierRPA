@@ -98,12 +98,23 @@ def JALPost(step):
     with open(step) as json_file:  
         data = json.load(json_file)
     postJson = copy.deepcopy(baseInfo.shipmentEventBase)
-    postJson["unitID"]=data.get("Waybill")
-    postJson["location"]=data.get("Airport")
-    postJson["vessel"]=data.get("Flight")
-    #postJson["eventTime"]=data.get("Date*")
-    postJson["eventName"], postJson["eventCode"]=JALPostEvent(data.get("Status"))
-    postJson["notes"]=data["Flight Details"]
+    postJson["resolvedEventSource"] = "JAL RPA"
+    postJson["reportSource"] = "AirEvent"
+    postJson["workOrderNumber"] = data.get("Work Order")
+    postJson["shipmentReferenceNumber"] = data.get("Reference Number")
+    postJson["unitId"] = data.get("Waybill")
+    postJson["location"]=data.get("Routing Info")
+    postJson["vessel"]=data.get("Airport")
+    postJson["carrierName"] = data.get("Air Carrier")
+    if(data.get("ULD Number") == "" or data.get("Date*") == ""):
+        return
+    dt = data.get("ULD Number") + data.get("Date*")
+    dt = datetime.datetime.strptime(dt.title(), "%d%b%H:%M")
+    dt = dt.replace(year=datetime.datetime.now().year)
+    if(dt.date() > datetime.datetime.today().date()):
+        dt = dt.replace(year = datetime.datetime.year-1)
+    postJson["eventTime"] = dt.strftime("%m-%d-%Y %H:%M:%S")
+    postJson["eventCode"], postJson["eventName"]=JALPostEvent(data.get("Status"))
     #postJson["weight"] = data.get("Weight")
     #postJson["quantity"] = data.get("Pieces")
     if(postJson["eventCode"] == None):
@@ -113,6 +124,15 @@ def JALPost(step):
     print(json.dumps(postJson))
     print(r)
     return    
+
+def testMain(container): #test main
+    fileList = glob.glob(os.getcwd() + "\\ContainerInformation\\"+container+"Step*.json", recursive = True) #get all the json steps
+    if (not fileList):
+        return
+    fileList = [f for f in fileList if container in f] #set of steps for this number
+    fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
+    for step in fileList:
+        JALPost(step)
 
 def main(containerList, cwd):
     path=""
@@ -129,4 +149,5 @@ def main(containerList, cwd):
             JALPost(step)
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    testMain(sys.argv[1])
+    #main(sys.argv[1], sys.argv[2])

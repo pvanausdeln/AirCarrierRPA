@@ -77,7 +77,7 @@ def EmiratesSkyPostEvent(event):
     elif(event.find("Received from Flight") != -1):
         return ("RCF", "Received from Flight")
     elif(event.find("Document Delivered") != -1):
-        return ('DDC', "Document Delivered")
+        return ('DDC', "Arrival documents delivered to consignee/agent")
     elif(event.find("Arrived") != -1):
         return ('ARR', "Arrived")
     elif(event.find("Departed") != -1):
@@ -85,7 +85,7 @@ def EmiratesSkyPostEvent(event):
     elif(event.find("Manifested") != -1):
         return ("MAN", "Manifested")
     elif(event.find("Booking Confirmed") != -1):
-        return ('BKG', "Booking Confirmed")
+        return ('BKG', "Shipment Booked")
     elif(event.find("Received from Shipper") != -1):
         return ('RCS', "Received from Shipper")
     return (None, None)
@@ -94,10 +94,14 @@ def EmiratesSkyPost(step):
     with open(step) as json_file:  
         data = json.load(json_file)
     postJson = copy.deepcopy(baseInfo.shipmentEventBase)
-    postJson["unitID"]=data.get("Waybill")
+    postJson["resolvedEventSource"] = "Emirates RPA"
+    postJson["reportSource"] = "AirEvent"
+    postJson["workOrderNumber"] = data.get("Work Order")
+    postJson["shipmentReferenceNumber"] = data.get("Reference Number")
+    postJson["unitId"] = data.get("Waybill")
     postJson["location"]=data.get("Station")
-    postJson["eventTime"]=data.get("Status Date")
-    postJson["eventName"], postJson["eventCode"]=EmiratesSkyPostEvent(data.get("Status"))
+    postJson["eventTime"]=datetime.datetime.strptime(data.get("Status Date").title(), "%d %B %Y %H:%M").strftime('%m-%d-%Y %H:%M:%S')
+    postJson["eventCode"], postJson["eventName"]=EmiratesSkyPostEvent(data.get("Status"))
     postJson["notes"]=data["Flight Details"]
     #postJson["weight"] = data.get("Weight")
     #postJson["quantity"] = data.get("Pieces")
@@ -109,6 +113,15 @@ def EmiratesSkyPost(step):
     print(json.dumps(postJson))
     print(r)
     return
+
+def testMain(container): #test main
+    fileList = glob.glob(os.getcwd() + "\\ContainerInformation\\"+container+"Step*.json", recursive = True) #get all the json steps
+    if (not fileList):
+        return
+    fileList = [f for f in fileList if container in f] #set of steps for this number
+    fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
+    for step in fileList:
+        EmiratesSkyPost(step)
 
 def main(containerList, cwd):
     path=""
@@ -125,4 +138,5 @@ def main(containerList, cwd):
             EmiratesSkyPost(step)
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    testMain(sys.argv[1])
+    #main(sys.argv[1], sys.argv[2])
