@@ -71,9 +71,59 @@ class baseInfo:
     "voyageNumber": None,
     "workOrderNumber": None
     }
+def QatarEvent(event):
+    if(event.find("RCS") != -1):
+        return ('RCS', "Received from Shipper")
+    elif(event.find("RCF") != -1):
+        return ('RCF', "Received from Freight")
+    elif(event.find("MAN") != -1):
+        return ("MAN", "Manifested")
+    elif(event.find("NFD") != -1):
+        return ("NFD", "Consignee/Agent notified of arrival")
+    elif(event.find("DEP") != -1):
+        return ('DEP', "Departed")
+    elif(event.find("DLV") != -1):
+        return ('DLV', "Delivered")
+    elif(event.find("Plan Update") != -1):
+        return ('BKU', "Booking Updated")
+    return (None, None)
 
 def QatarPost(step):
+    with open(step) as json_file:  
+        data = json.load(json_file)
+    postJson = copy.deepcopy(baseInfo.shipmentEventBase)
+    postJson["resolvedEventSource"] = "Qatar RPA"
+    postJson["reportSource"] = "AirEvent"
+    postJson["workOrderNumber"] = data.get("Work Order")
+    postJson["shipmentReferenceNumber"] = data.get("Reference Number")
+    postJson["unitId"] = data.get("Waybill")
+    postJson["location"] = data.get("Airport")
+    postJson["eventCode"], postJson["eventName"] = QatarEvent(data.get("Operational Status"))
+    postJson["carrierName"] = data.get("Air Carrier")
+    postJson["notes"] = data.get("Details")
+    #try:
+    #    postJson["Weight"] = data.get("Details").split("Kgs")[0].strip().split(" ")[-1].split(",")[-1]
+    #    postJson["Pieces"] = data.get("Details").split("Pcs")[0].strip().split(" ")[-1].split(",")[-1]
+    #except:
+    #    pass
+    if(postJson["eventCode"] == None):
+        return
+    dt = datetime.datetime.strptime(data.get("Date and Time") + " " + data.get("Details").split(" ")[-3], "%d-%b-%Y %H:%M")
+    postJson["eventTime"] = dt.strftime('%m-%d-%Y %H:%M:%S')
+    headers = {'content-type':'application/json'}
+    r = requests.post(baseInfo.postURL, data = json.dumps(postJson), headers = headers, verify = False)
+    print(json.dumps(postJson))
+    print(r)
     return
+
+def testMain(container): #test main
+    fileList = glob.glob(os.getcwd() + "\\ContainerInformation\\"+container+"Step*.json", recursive = True) #get all the json steps
+    if (not fileList):
+        return
+    fileList = [f for f in fileList if container in f] #set of steps for this number
+    fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
+    for step in fileList:
+        QatarPost(step)
 
 def main(containerList, cwd):
     path=""
@@ -90,4 +140,5 @@ def main(containerList, cwd):
             QatarPost(step)
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    testMain(sys.argv[1])
+    #main(sys.argv[1], sys.argv[2])
