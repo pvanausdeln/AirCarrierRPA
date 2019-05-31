@@ -1,6 +1,6 @@
 {
-  "name": "Nippon Cargo",
-  "description": "Nippon Cargo RPA Tracking",
+  "name": "ANA Nippon Cargo",
+  "description": "ANA Nippon Cargo RPA Tracking",
   "main": "Main.xaml",
   "dependencies": {
     "Microsoft.Activities.Extensions": "[2.0.6.9]",
@@ -15,7 +15,7 @@
   "studioVersion": "19.3.0.0",
   "projectVersion": "1.0.0",
   "runtimeOptions": {
-    "exceptionHandlerWorkflow": "NipponCargoHandler.xaml",
+    "exceptionHandlerWorkflow": "ANANipponCargoHandler.xaml",
     "autoDispose": false,
     "isPausable": true,
     "excludedLoggedData": [
