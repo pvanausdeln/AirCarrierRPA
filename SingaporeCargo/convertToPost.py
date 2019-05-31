@@ -72,8 +72,66 @@ class baseInfo:
     "workOrderNumber": None
     }
 
-def TurkishPost(step):
+def SingaporeEvent(event):
+    if(event.find("Shipment Received") != -1):
+        return ('RCS', "Received from Shipper")
+    elif(event.find("Freight on Hand") != -1):
+        return ('FOH', "Freight On Hand")
+    elif(event.find("Cleared By Customs") != -1):
+        return ('CBC', "Cleared by Customs")
+    elif(event.find("Flight Departed") != -1):
+        return ('DEP', "Departed")
+    elif(event.find("Flight Arrived") != -1):
+        return ('ARR', "Arrived")
+    elif(event.find("Shipment Ready for Pick-up") != -1):
+        return ("NFD", "Consignee/Agent notified of arrival")
+    elif(event.find("Shipment Delivered") != -1):
+        return ('DLV', "Delivered")
+    elif(event.find("Shipment Checked Into Warehouse") != -1):
+        return ('CIN', "Checked In")
+    elif(event.find("Found Cargo") != -1):
+        return ("FCA", "Found Cargo")
+    elif(event.find("Temperature Log") != -1):
+        return ('TEM', "Temperature Log")
+    return (None, None)
+
+def SingaporePost(step):
+    with open(step) as json_file:  
+        data = json.load(json_file)
+    postJson = copy.deepcopy(baseInfo.shipmentEventBase)
+    postJson["resolvedEventSource"] = "Singapore RPA"
+    postJson["reportSource"] = "AirEvent"
+    postJson["workOrderNumber"] = data.get("Work Order")
+    postJson["shipmentReferenceNumber"] = data.get("Reference Number")
+    postJson["unitId"] = data.get("Waybill")
+    postJson["location"] = data.get("Station")
+    postJson["eventCode"], postJson["eventName"] = SingaporeEvent(data.get("Status"))
+    postJson["carrierName"] = data.get("Air Carrier")
+    postJson["vessel"] = data.get("Flight Number")
+    postJson["notes"] = data.get("Details")
+    #try:
+    #    postJson["Weight"] = data.get("Weight")
+    #    postJson["Pieces"] = data.get("Pieces")
+    #except:
+    #    pass
+    if(postJson["eventCode"] == None):
+        return
+    dt = datetime.datetime.strptime(data.get("Date") + " " + data.get("Time"), "%d %b %Y %H:%M")
+    postJson["eventTime"] = dt.strftime('%m-%d-%Y %H:%M:%S')
+    headers = {'content-type':'application/json'}
+    r = requests.post(baseInfo.postURL, data = json.dumps(postJson), headers = headers, verify = False)
+    print(json.dumps(postJson))
+    print(r)
     return
+
+def testMain(container): #test main
+    fileList = glob.glob(os.getcwd() + "\\ContainerInformation\\"+container+"Step*.json", recursive = True) #get all the json steps
+    if (not fileList):
+        return
+    fileList = [f for f in fileList if container in f] #set of steps for this number
+    fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
+    for step in fileList:
+        SingaporePost(step)
 
 def main(containerList, cwd):
     path=""
@@ -87,7 +145,8 @@ def main(containerList, cwd):
         fileList = [f for f in fileList if container in f] #set of steps for this number
         fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
         for step in fileList:
-            TurkishPost(step)
+            SingaporePost(step)
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    testMain(sys.argv[1])
+    #main(sys.argv[1], sys.argv[2])
