@@ -71,6 +71,7 @@ class baseInfo:
     "voyageNumber": None,
     "workOrderNumber": None
     }
+    
 def QatarEvent(event):
     if(event.find("RCS") != -1):
         return ('RCS', "Received from Shipper")
@@ -140,5 +141,5 @@ def main(containerList, cwd):
             QatarPost(step)
 
 if __name__ == "__main__":
-    testMain(sys.argv[1])
-    #main(sys.argv[1], sys.argv[2])
+    #testMain(sys.argv[1])
+    main(sys.argv[1], sys.argv[2])
