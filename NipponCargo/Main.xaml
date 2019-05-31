@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="660,5327" sap2010:WorkflowViewState.IdRef="Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="660,5922" sap2010:WorkflowViewState.IdRef="Main_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:maes="clr-namespace:Microsoft.Activities.Extensions.Statements;assembly=Microsoft.Activities.Extensions" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.uipath.com/workflow/activities/python" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
       <x:String>System.Activities</x:String>
@@ -55,13 +55,13 @@
       <AssemblyReference>System.Collections.Immutable</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="620,5247" sap2010:WorkflowViewState.IdRef="Sequence_20">
+  <Sequence DisplayName="Main" sap:VirtualizedContainerService.HintSize="620,5842" sap2010:WorkflowViewState.IdRef="Sequence_20">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <Sequence sap:VirtualizedContainerService.HintSize="598,5123" sap2010:WorkflowViewState.IdRef="Sequence_19">
+    <Sequence sap:VirtualizedContainerService.HintSize="598,5718" sap2010:WorkflowViewState.IdRef="Sequence_19">
       <Sequence.Variables>
         <Variable x:TypeArguments="scg:IEnumerable(x:Object)" Name="Waybills" />
         <Variable x:TypeArguments="scg:IEnumerable(x:Object)" Name="WorkOrders" />
@@ -130,7 +130,7 @@
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
       </ui:OpenBrowser>
-      <Sequence sap:VirtualizedContainerService.HintSize="576,4224" sap2010:WorkflowViewState.IdRef="Sequence_18">
+      <Sequence sap:VirtualizedContainerService.HintSize="576,4819" sap2010:WorkflowViewState.IdRef="Sequence_18">
         <Sequence.Variables>
           <Variable x:TypeArguments="p:PythonObject" Name="Script" />
           <Variable x:TypeArguments="s:String[]" Name="splitWaybill" />
@@ -141,13 +141,13 @@
             <x:Boolean x:Key="IsPinned">False</x:Boolean>
           </scg:Dictionary>
         </sap:WorkflowViewStateService.ViewState>
-        <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="554,3717" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Waybills]">
+        <ui:ForEach x:TypeArguments="x:Object" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="554,4312" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[Waybills]">
           <ui:ForEach.Body>
             <ActivityAction x:TypeArguments="x:Object">
               <ActivityAction.Argument>
                 <DelegateInArgument x:TypeArguments="x:Object" Name="item" />
               </ActivityAction.Argument>
-              <Sequence sap:VirtualizedContainerService.HintSize="538,3583" sap2010:WorkflowViewState.IdRef="Sequence_22">
+              <Sequence sap:VirtualizedContainerService.HintSize="538,4178" sap2010:WorkflowViewState.IdRef="Sequence_22">
                 <Sequence.Variables>
                   <Variable x:TypeArguments="x:Int32" Default="0" Name="index" />
                   <Variable x:TypeArguments="scg:Dictionary(x:String, x:String)" Name="infoArray" />
@@ -234,28 +234,28 @@
                     <ui:Continue sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Continue_1" />
                   </If.Then>
                 </If>
-                <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="516,51" sap2010:WorkflowViewState.IdRef="Sequence_37">
+                <Sequence DisplayName="Data Scraping" sap:VirtualizedContainerService.HintSize="516,500" sap2010:WorkflowViewState.IdRef="Sequence_39">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                      <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                       <x:Boolean x:Key="IsPinned">False</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'Tracking Page'" sap:VirtualizedContainerService.HintSize="414,376" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="4c0e99de8c5efcaaf49cef5943d09d92" Selector="&lt;html app='chrome.exe' title='Tracking' /&gt;">
+                  <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" BrowserType="Chrome" DisplayName="Attach Browser 'Tracking Page'" sap:VirtualizedContainerService.HintSize="414,376" sap2010:WorkflowViewState.IdRef="BrowserScope_4" InformativeScreenshot="d74d165192172d5fa2d1bb00af64d785" Selector="&lt;html app='chrome.exe' title='Tracking' /&gt;">
                     <ui:BrowserScope.Body>
                       <ActivityAction x:TypeArguments="x:Object">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336,230" sap2010:WorkflowViewState.IdRef="Sequence_36">
+                        <Sequence DisplayName="Do" sap:VirtualizedContainerService.HintSize="336,230" sap2010:WorkflowViewState.IdRef="Sequence_38">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'DIV'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;/row&gt;&lt;column exact='1' name='Event' attr='text'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-4' idx='1'/&gt;&lt;webctrl tag='span' idx='1'/&gt;&lt;webctrl tag='label' idx='1'/&gt;&lt;webctrl tag='h5' class='margin-left-5' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Datetime' attr='text'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-2' idx='1'/&gt;&lt;webctrl tag='label' idx='1'/&gt;&lt;webctrl tag='h5' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Pieces/Weight' attr='text'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-2' idx='2'/&gt;&lt;webctrl tag='label' idx='1'/&gt;&lt;webctrl tag='h5' class='margin-left-5' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Flight' attr='text'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-2' idx='3'/&gt;&lt;webctrl tag='label' idx='1'/&gt;&lt;webctrl tag='h5' class='margin-left-5' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Other Info' attr='text'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-2' idx='4'/&gt;&lt;webctrl tag='label' idx='1'/&gt;&lt;webctrl tag='h5' class='margin-left-5' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="314,106" sap2010:WorkflowViewState.IdRef="ExtractData_3" MaxNumberOfResults="100">
+                          <ui:ExtractData NextLinkSelector="{x:Null}" ContinueOnError="True" DataTable="[ExtractDataTable]" DelayBetweenPagesMS="300" DisplayName="Extract Structured Data 'DIV'" ExtractMetadata="&lt;extract&gt;&lt;row exact='1'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;/row&gt;&lt;column exact='1' name='Event' attr='text'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-4' idx='1'/&gt;&lt;webctrl tag='span' idx='1'/&gt;&lt;webctrl tag='label' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Datetime' attr='text'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-2' idx='1'/&gt;&lt;webctrl tag='label' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Pieces/Weight' attr='text'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-2' idx='2'/&gt;&lt;webctrl tag='label' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Flight' attr='text'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-2' idx='3'/&gt;&lt;webctrl tag='label' idx='1'/&gt;&lt;/column&gt;&lt;column exact='1' name='Other' attr='text'&gt;&lt;webctrl tag='div' class='col-md-12 ' idx='1'/&gt;&lt;webctrl tag='div' class='portlet box blue-madison' idx='1'/&gt;&lt;webctrl tag='div' class='portlet-body   borderBoth' idx='1'/&gt;&lt;webctrl tag='div' class='row' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-12  ' idx='1'/&gt;&lt;webctrl tag='div' class='panel panel-default margin-0' idx='1'/&gt;&lt;webctrl tag='div' class='flightListScrollMain  ' idx='1'/&gt;&lt;webctrl tag='div' class='row flightList '/&gt;&lt;webctrl tag='div' class='col-md-12' idx='1'/&gt;&lt;webctrl tag='div' class='col-md-2' idx='4'/&gt;&lt;webctrl tag='label' idx='1'/&gt;&lt;/column&gt;&lt;/extract&gt;" sap:VirtualizedContainerService.HintSize="314,106" sap2010:WorkflowViewState.IdRef="ExtractData_4" MaxNumberOfResults="100">
                             <ui:ExtractData.Target>
-                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="2c2eff643108f65a3c8d3668c95fa6c3" Selector="&lt;webctrl css-selector='body&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='933-84365923' tag='DIV' /&gt;" WaitForReady="COMPLETE" />
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="39dd4c83feac5740acdc9c1e5a998079" Selector="&lt;webctrl css-selector='body&amp;gt;section&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;form&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' tag='DIV' parentname='trackingForm' idx='1' /&gt;" WaitForReady="COMPLETE" />
                             </ui:ExtractData.Target>
                           </ui:ExtractData>
                         </Sequence>
@@ -343,6 +343,21 @@
                     <InArgument x:TypeArguments="x:Int32">[index + 1]</InArgument>
                   </Assign.Value>
                 </Assign>
+                <ui:Click DelayBefore="{x:Null}" DelayMS="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'BUTTON'" sap:VirtualizedContainerService.HintSize="516,106" sap2010:WorkflowViewState.IdRef="Click_4" KeyModifiers="None" MouseButton="BTN_LEFT" SendWindowMessages="False" SimulateClick="False">
+                  <ui:Click.CursorPosition>
+                    <ui:CursorPosition Position="Center">
+                      <ui:CursorPosition.OffsetX>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetX>
+                      <ui:CursorPosition.OffsetY>
+                        <InArgument x:TypeArguments="x:Int32" />
+                      </ui:CursorPosition.OffsetY>
+                    </ui:CursorPosition>
+                  </ui:Click.CursorPosition>
+                  <ui:Click.Target>
+                    <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" TimeoutMS="{x:Null}" InformativeScreenshot="890b3d0b20e82f011d865a94d341076f" Selector="&lt;html app='chrome.exe' title='Tracking' /&gt;&lt;webctrl parentid='trkShpTabs' tag='BUTTON' /&gt;" WaitForReady="INTERACTIVE" />
+                  </ui:Click.Target>
+                </ui:Click>
               </Sequence>
             </ActivityAction>
           </ui:ForEach.Body>
