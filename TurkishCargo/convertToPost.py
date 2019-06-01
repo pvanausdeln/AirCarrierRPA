@@ -141,5 +141,5 @@ def main(containerList, cwd):
             TurkishPost(step)
 
 if __name__ == "__main__":
-    testMain(sys.argv[1])
-    #main(sys.argv[1], sys.argv[2])
+    #testMain(sys.argv[1])
+    main(sys.argv[1], sys.argv[2])
