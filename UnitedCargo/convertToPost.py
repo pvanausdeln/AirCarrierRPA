@@ -74,25 +74,25 @@ class baseInfo:
 
 def UnitedPostEvent(event):
     if(event.find("Received from flight") != -1):
-        return ("RCF", "Received from flight")
+        return ("RCF", "Received from Flight")
     elif(event.find("Delivered") != -1):
         return ("DLV", "Delivered")
     elif(event.find("Documents delivered") != -1):
-        return ("DDC", "Documents delivered")
+        return ("DDC", "Arrival documents delivered to consignee/agent")
     elif(event.find("Arrived") != -1):
         return ('ARR', "Arrived")
     elif(event.find("Departed") != -1):
-        return ('DEP', "Departed")
+        return ('DEP', "Departed on Flight")
     elif(event.find("Manifested") != -1):
         return ('MAN', "Manifested")
     elif(event.find("Received from other airline") != -1):
         return ('RCA', "Received from other airline")
     elif(event.find("Transferred") != -1):
-        return ('TAA', "Transferred")
+        return ('AT', "Airline Transfer")
     elif(event.find("Booking Confirmed") != -1):
-        return ('BKG', "Booking Confirmed")
+        return ('BKG', "Shipment Booked")
     elif(event.find("Received from shipper") != -1):
-        return ('RCS', "Received from shipper")
+        return ('RCS', "Received from Shipper")
     elif(event.find("Documents received") != -1):
         return ('DDA', "Documents received")
     return (None, None)
@@ -101,7 +101,7 @@ def UnitedPost(step):
     with open(step) as json_file:  
         data = json.load(json_file)
     postJson = copy.deepcopy(baseInfo.shipmentEventBase)
-    postJson["resolvedEventSource"] = "United Cargo RPA"
+    postJson["resolvedEventSource"] = "United RPA"
     postJson["reportSource"] = "AirEvent"
     postJson["workOrderNumber"] = data.get("Work Order")
     postJson["shipmentReferenceNumber"] = data.get("Reference Number")
@@ -113,7 +113,7 @@ def UnitedPost(step):
     postJson["eventTime"]=data.get("Date/Time")
     if(postJson["eventCode"] == None):
         return
-    dt = datetime.datetime.strptime(data.get("Event Time").split("(")[0], "%d%b %H:%M")
+    dt = datetime.datetime.strptime(data.get("Date/Time").split("(")[0], "%d %b %Y %H:%M")
     dt = dt.replace(year=datetime.datetime.now().year)
     if(dt.date() > datetime.datetime.today().date()):
         dt = dt.replace(year = datetime.datetime.year-1)
@@ -126,6 +126,15 @@ def UnitedPost(step):
     print(json.dumps(postJson))
     print(r)
     return
+
+def testMain(container): #test main
+    fileList = glob.glob(os.getcwd() + "\\ContainerInformation\\"+container+"Step*.json", recursive = True) #get all the json steps
+    if (not fileList):
+        return
+    fileList = [f for f in fileList if container in f] #set of steps for this number
+    fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
+    for step in fileList:
+        UnitedPost(step)
 
 def main(containerList, cwd):
     path=""
@@ -142,4 +151,5 @@ def main(containerList, cwd):
             UnitedPost(step)
 
 if __name__ == "__main__":
-    main(sys.argv[1], sys.argv[2])
+    testMain(sys.argv[1])
+    #main(sys.argv[1], sys.argv[2])
