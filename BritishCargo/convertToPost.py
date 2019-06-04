@@ -71,8 +71,52 @@ class baseInfo:
     "voyageNumber": None,
     "workOrderNumber": None
     }
+def BritishPostEvent(event):
+    if(event.find("RECEIVED ON FLIGHT") != -1):
+        return ("RCF", "RECEIVED ON FLIGHT")
+    elif(event.find("BOOKED") != -1):
+        return ("BKD", "BOOKED")
+    elif(event.find("DELIVERED") != -1):
+        return ("DLV", "DELIVERED")
+    elif(event.find("MANIFESTED") != -1):
+        return ("MAN", "MANIFESTED")
+    elif(event.find("Arrived") != -1):
+        return ('ARR', "Arrived")
+    elif(event.find("DEPARTED") != -1):
+        return ('DEP', "DEPARTED")
+    elif(event.find("PRE-MANIFESTED") != -1):
+        return ('PMA', "PRE-MANIFESTED")
+    elif(event.find("DOCUMENTATION") != -1):
+        return ('DOC', "DOCUMENTATION")
+    elif(event.find("CLEARED BY CUSTOMS") != -1):
+        return ('CCD', "CLEARED BY CUSTOMS")
+    elif(event.find("RECEIVED") != -1):
+        return ('RCS', "RECEIVED")
+    return (None, None)
 
 def BritishPost(step):
+    with open(step) as json_file:  
+        data = json.load(json_file)
+    postJson = copy.deepcopy(baseInfo.shipmentEventBase)
+    postJson["resolvedEventSource"] = "AirBridge RPA"
+    postJson["reportSource"] = "AirEvent"
+    postJson["workOrderNumber"] = data.get("Work Order")
+    postJson["shipmentReferenceNumber"] = data.get("Reference Number")
+    postJson["unitId"] = data.get("Waybill")
+    postJson["notes"] = ''.join(x for x in data.get("Description") if x in string.printable)
+    postJson["location"] = data.get("Station")
+    postJson["eventCode"], postJson["eventName"] = AirBridgeEvent(data.get("Status"))
+    postJson["carrierName"] = data.get("Air Carrier")
+    if(postJson["eventCode"] == None):
+        return
+    data["EventTime"] = ''.join(x for x in data["EventTime"] if x in string.printable)
+    postJson["eventTime"] = datetime.datetime.strptime(data.get("EventTime").title(), '%d%b%y%H:%M').strftime('%m-%d-%Y %H:%M:%S')
+    #postJson["weight"] = data.get("Weight")
+    #postJson["quantity"] = data.get("Pieces")
+    headers = {'content-type':'application/json'}
+    r = requests.post(baseInfo.postURL, data = json.dumps(postJson), headers = headers, verify = False)
+    print(json.dumps(postJson))
+    print(r)
     return
 
 def main(containerList, cwd):
