@@ -80,7 +80,7 @@ def AirBridgeEvent(event):
     elif(event.find("Consignee/Agent notified of arrival") != -1):
         return ("NFD", "Consignee/Agent notified of arrival")
     elif(event.find("Arrival documents delivered to Consignee/Agent") != -1):
-        return ("DDC", "Arrival documents delivered to consignee/agent")
+        return ("AWD", "Arrival documents delivered to consignee/agent")
     elif(event.find("Arrived") != -1):
         return ('ARR', "Arrived")
     elif(event.find("Departed on Flight") != -1):
@@ -88,9 +88,9 @@ def AirBridgeEvent(event):
     elif(event.find("Received From Shipper") != -1):
         return ('RCS', "Received from Shipper")
     elif(event.find("Cleared by Customs") != -1):
-        return ('CBC', "Cleared by Customs")
+        return ('CCD', "Cleared by Customs")
     elif(event.find("Reported to Customs") != -1):
-        return ('RTC', "Reported to Customs")
+        return ('CRC', "Reported to Customs")
     return (None, None)
 
 def AirBridgePost(step):
