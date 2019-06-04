@@ -80,15 +80,15 @@ def CathayPacificEvent(event):
     elif(event.find("Freight On Hand") != -1):
         return ('FOH', "Freight on Hand")
     elif(event.find("Ready for carriage") != -1):
-        return ('RBC', "Ready for Carriage")
+        return ('PRE', "Ready for Carriage")
     elif(event.find("Ready to board aircraft") != -1):
-        return ('RBA', "Ready to Board Aircraft")
+        return ('PRE', "Ready to Board Aircraft")
     elif(event.find("Departed") != -1):
-        return ("Dep", "Departed")
+        return ("DEP", "Departed")
     elif(event.find("Unloaded from arrival flight") != -1):
         return ('RCF', "Received from Flight")
     elif(event.find("Arrival document delivered") != -1):
-        return ('DDC', "Arrival documents delivered to consignee/agent")
+        return ('AWD', "Arrival documents delivered to consignee/agent")
     return (None, None)
 
 def CathayPacificPost(step):

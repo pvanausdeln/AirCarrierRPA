@@ -86,7 +86,7 @@ def ChinaEvent(event):
     elif(event.find("Booked") != -1):
         return ('BKD', "Booked")
     elif(event.find("Air Waybill Delivered") != -1):
-        return ('DDC', "Arrival documents delivered to consignee/agent")
+        return ('AWD', "Arrival documents delivered to consignee/agent")
     return (None, None)
 
 def ChinaPost(step):
