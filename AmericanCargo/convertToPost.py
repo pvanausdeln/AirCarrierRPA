@@ -71,8 +71,50 @@ class baseInfo:
     "voyageNumber": None,
     "workOrderNumber": None
     }
-
+def AmericanCargoEvent(Event):
+    if(event.find("Delivered") != -1):
+        return ("DLV", "Delivered")
+    elif(event.find("On Hand") != -1):
+        return ("FOH", "On Hand")
+    elif(event.find("Flight Arrived") != -1):
+        return ("ARR", "Flight Arrived")
+    elif(event.find("Flight Departed") != -1):
+        return ("DEP", "Flight Departed")
+    elif(event.find("Dispatched") != -1):
+        return ('DPD', "Dispatched")
+    elif(event.find("Planned") != -1):
+        return ('PLN', "Planned")
+    elif(event.find("Received") != -1):
+        return ('RCS', "Received")
+    elif(event.find("Booked") != -1):
+        return ('BKG', "Booked")
+    elif(event.find("Offloaded") != -1):
+        return ('DIS', "Offloaded")
+    elif(event.find("Awaiting Customs Clearance") != -1):
+        return ('ACC', "Awaiting Customs Clearance")
+    return (None, None)
 def AmericanPost(step):
+    with open(step) as json_file:  
+        data = json.load(json_file)
+    postJson = copy.deepcopy(baseInfo.shipmentEventBase)
+    postJson["resolvedEventSource"] = "AmericanCargo RPA"
+    postJson["reportSource"] = "AirEvent"
+    postJson["workOrderNumber"] = data.get("Work Order")
+    postJson["shipmentReferenceNumber"] = data.get("Reference Number")
+    postJson["unitId"] = data.get("Waybill")
+    postJson["eventCode"], postJson["eventName"] = AmericanCargoEvent(data.get("Status"))
+    postJson["carrierName"] = data.get("Air Carrier")
+    if(postJson["eventCode"] == None):
+        return
+    data["EventTime"] = ''.join(x for x in data["EventTime"] if x in string.printable)
+    #postJson["eventTime"] = datetime.datetime.strptime(data.get("EventTime").title(), '%d%b%y%H:%M').strftime('%m-%d-%Y %H:%M:%S') Get time using data.get(details) by splitting it accordingly.
+    #postJson["weight"] = data.get("Weight")
+    #postJson["quantity"] = data.get("Pieces/Container")
+    #postJson["vessel"]=data.get("Flight/Truck")
+    headers = {'content-type':'application/json'}
+    r = requests.post(baseInfo.postURL, data = json.dumps(postJson), headers = headers, verify = False)
+    print(json.dumps(postJson))
+    print(r)
     return
 
 def main(containerList, cwd):

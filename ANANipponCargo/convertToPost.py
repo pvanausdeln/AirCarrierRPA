@@ -71,8 +71,31 @@ class baseInfo:
     "voyageNumber": None,
     "workOrderNumber": None
     }
-
+def ANANNipponCargoEvent(Event):
+    return
 def ANANipponPost(step):
+    with open(step) as json_file:  
+        data = json.load(json_file)
+    postJson = copy.deepcopy(baseInfo.shipmentEventBase)
+    postJson["resolvedEventSource"] = "AirBridge RPA"
+    postJson["reportSource"] = "AirEvent"
+    postJson["workOrderNumber"] = data.get("Work Order")
+    postJson["shipmentReferenceNumber"] = data.get("Reference Number")
+    postJson["unitId"] = data.get("Waybill")
+    postJson["notes"] = ''.join(x for x in data.get("Description") if x in string.printable)
+    postJson["location"] = data.get("Station")
+    postJson["eventCode"], postJson["eventName"] = ANANNipponCargoEvent(data.get("Status"))
+    postJson["carrierName"] = data.get("Air Carrier")
+    if(postJson["eventCode"] == None):
+        return
+    #data["EventTime"] = ''.join(x for x in data["EventTime"] if x in string.printable)
+    postJson["eventTime"] = datetime.datetime.strptime(data.get("EventTime").title(), '%d%b%y%H:%M').strftime('%m-%d-%Y %H:%M:%S')
+    #postJson["weight"] = data.get("Weight")
+    #postJson["quantity"] = data.get("Pieces")
+    headers = {'content-type':'application/json'}
+    r = requests.post(baseInfo.postURL, data = json.dumps(postJson), headers = headers, verify = False)
+    print(json.dumps(postJson))
+    print(r)
     return
 
 def main(containerList, cwd):
