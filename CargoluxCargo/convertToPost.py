@@ -72,8 +72,61 @@ class baseInfo:
     "workOrderNumber": None
     }
 
-def CargoluxPost(step):
+def CargoLuxPostEvent(event):
+    if(event.find("Received from Forwarder") != -1):
+        return ("FWB", "Received from Forwarder")
+    elif(event.find("Freight on Hand") != -1):
+        return ("FOH", "Freight on Hand")
+    elif(event.find("Accepted") != -1):
+        return ("RCS", "Received from Shipper")
+    elif(event.find("Departed") != -1):
+        return ('DEP', "Shipment Departed")
+    elif(event.find("Arrived") != -1):
+        return ('ARR', "Arrived")
+    elif(event.find("Received") != -1):
+        return ('RCF', "Received from Flight")
+    elif(event.find("Ready to be picked up") != -1):
+        return ('NFD', "Consignee/Agent Notified")
+    elif(event.find("Delivery of documents") != -1):
+        return ('AWD', "Arrival Documents Delivered")
+    elif(event.find("Delivery") != -1):
+        return ('DLV', "Shipment Delivered")
+    return (None, None)
+
+def CargoLuxPost(step):
+    with open(step) as json_file:  
+        data = json.load(json_file)
+    postJson = copy.deepcopy(baseInfo.shipmentEventBase)
+    postJson["resolvedEventSource"] = "CargoLux RPA"
+    postJson["reportSource"] = "AirEvent"
+    postJson["workOrderNumber"] = data.get("Work Order")
+    postJson["shipmentReferenceNumber"] = data.get("Reference Number")
+    postJson["unitId"] = data.get("Waybill")
+    postJson["location"] = data.get("Station")
+    postJson["vessel"] = data.get("Flight Details").split(",")[0]
+    postJson["eventCode"], postJson["eventName"] = CargoLuxPostEvent(data.get("EventID"))
+    postJson["carrierName"] = data.get("Air Carrier")
+    if(postJson["eventCode"] == None):
+        return
+    dt = datetime.datetime.strptime(data.get("Status Date"), "%d %B %Y - %H:%M")
+    postJson["eventTime"] = dt.strftime('%m-%d-%Y %H:%M:%S')
+    print(json.dumps(postJson))
+    #postJson["weight"] = data.get("Weight")
+    #postJson["quantity"] = data.get("Pieces")
+    headers = {'content-type':'application/json'}
+    r = requests.post(baseInfo.postURL, data = json.dumps(postJson), headers = headers, verify = False)
+    print(json.dumps(postJson))
+    print(r)
     return
+
+def testMain(container): #test main
+    fileList = glob.glob(os.getcwd() + "\\ContainerInformation\\"+container+"Step*.json", recursive = True) #get all the json steps
+    if (not fileList):
+        return
+    fileList = [f for f in fileList if container in f] #set of steps for this number
+    fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
+    for step in fileList:
+        CargoLuxPost(step)
 
 def main(containerList, cwd):
     path=""
@@ -87,7 +140,8 @@ def main(containerList, cwd):
         fileList = [f for f in fileList if container in f] #set of steps for this number
         fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
         for step in fileList:
-            CargoluxPost(step)
+            CargoLuxPost(step)
 
 if __name__ == "__main__":
+    #testMain(sys.argv[1])
     main(sys.argv[1], sys.argv[2])
