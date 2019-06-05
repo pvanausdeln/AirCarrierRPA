@@ -86,7 +86,7 @@ def QatarEvent(event):
     elif(event.find("DLV") != -1):
         return ('DLV', "Delivered")
     elif(event.find("Plan Update") != -1):
-        return ('BKU', "Booking Updated")
+        return ('BKD', "Booking Updated")
     return (None, None)
 
 def QatarPost(step):

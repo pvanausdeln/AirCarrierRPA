@@ -73,11 +73,11 @@ class baseInfo:
     }
 def JALPostEvent(event):
     if(event.find("Reserved") != -1):
-        return ("BKD", "Reserved")
+        return ("BKD", "Shipment Booked")
     elif(event.find("Accepted") != -1):
-        return ("RCS", "Accepted")
+        return ("RCS", "Received from Shipper")
     elif(event.find("Shipment Availability") != -1):
-        return ('NFD', "Shipment Availability")
+        return ('NFD', "Consignee/Agent notified")
     elif(event.find("Arrived") != -1):
         return ('ARR', "Arrived")
     elif(event.find("Departed") != -1):
@@ -85,7 +85,7 @@ def JALPostEvent(event):
     elif(event.find("Delivered") != -1):
         return ("DLV", "Delivered")
     elif(event.find("Customs Info") != -1):
-        return ('CBC', "Customs Info")
+        return ('CRC', "Reported to Customs")
     elif(event.find("Departure Scheduled") != -1):
         return ('DES', "Departure Scheduled")
     elif(event.find("Arrival Schedules") != -1):

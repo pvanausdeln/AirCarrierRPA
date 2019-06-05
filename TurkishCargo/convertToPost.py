@@ -82,7 +82,7 @@ def TurkishEvent(event):
     elif(event.find("DLV") != -1):
         return ('DLV', "Delivered")
     elif(event.find("BKD") != -1):
-        return ('BKG', "Shipment Booked")
+        return ('BKD', "Shipment Booked")
     elif(event.find("MAN") != -1):
         return ("MAN", "Manifested")
     elif(event.find("NFD") != -1):

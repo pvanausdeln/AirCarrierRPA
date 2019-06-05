@@ -74,7 +74,7 @@ class baseInfo:
 
 def QantasEvent(event):
     if(event.find("Booked") != -1):
-        return ("BKG", "Shipment Booked")
+        return ("BKD", "Shipment Booked")
     elif(event.find("Accepted") != -1):
         return ('RCS', "Received from Shipper")
     elif(event.find("Manifested") != -1):

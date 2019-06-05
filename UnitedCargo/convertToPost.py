@@ -78,7 +78,7 @@ def UnitedPostEvent(event):
     elif(event.find("Delivered") != -1):
         return ("DLV", "Delivered")
     elif(event.find("Documents delivered") != -1):
-        return ("DDC", "Arrival documents delivered to consignee/agent")
+        return ("AWD", "Arrival documents delivered to consignee/agent")
     elif(event.find("Arrived") != -1):
         return ('ARR', "Arrived")
     elif(event.find("Departed") != -1):
@@ -86,15 +86,15 @@ def UnitedPostEvent(event):
     elif(event.find("Manifested") != -1):
         return ('MAN', "Manifested")
     elif(event.find("Received from other airline") != -1):
-        return ('RCA', "Received from other airline")
+        return ('RCF', "Received from Flight")
     elif(event.find("Transferred") != -1):
-        return ('AT', "Airline Transfer")
+        return ('TFD', "Airline Transfer")
     elif(event.find("Booking Confirmed") != -1):
-        return ('BKG', "Shipment Booked")
+        return ('BKD', "Shipment Booked")
     elif(event.find("Received from shipper") != -1):
         return ('RCS', "Received from Shipper")
     elif(event.find("Documents received") != -1):
-        return ('DDA', "Documents received")
+        return ('AWR', "Arrival Documents Received")
     return (None, None)
 
 def UnitedPost(step):

@@ -82,21 +82,21 @@ def ChinaCargoEvent(event):
     elif(event.find("Received from flight") != -1):
         return ("RCF", "Received from Flight")
     elif(event.find("Documents arrived") != -1 or event.find("Arrival Document Delivered") != -1):
-        return ("DDC", "Arrival documents delivered to consignee/agent")
+        return ("AWD", "Arrival documents delivered to consignee/agent")
     elif(event.find("Departed on flight") != -1):
         return ('DEP', "Departed on Flight")
     elif(event.find("Manifested on flight") != -1):
         return ("MAN", "Manifested")
     elif(event.find("Prepared for loading") != -1):
-        return ('RBA', "Ready to Board Aircraft")
+        return ('PRE', "Prepared for Loading")
     elif(event.find("Received from shipper") != -1):
         return ('RCS', "Received from Shipper")
     elif(event.find("Booked") != -1):
         return ("BKG", "Shipment Booked")
+    elif(event.find("Transferring to another Airline") != -1):
+        return ('TFD', "Transferring to another Airline")
     elif(event.find("Ready for carriage") != -1):
-        return ('AT', "Transferring to another Airline")
-    elif(event.find("Ready for carriage") != -1):
-        return ('RBC', "Ready for Carriage")
+        return ('RCS', "Ready for Carriage")
     return (None, None)
 
 def ChinaCargoPost(step):

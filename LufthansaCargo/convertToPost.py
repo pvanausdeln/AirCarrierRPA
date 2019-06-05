@@ -74,7 +74,7 @@ class baseInfo:
 
 def LufthansaEvent(event):
     if(event.find("Booking confirmed") != -1):
-        return ("BKG", "Shipment Booked")
+        return ("BKD", "Shipment Booked")
     elif(event.find("Shipment accepted") != -1):
         return ('RCS', "Received from Shipper")
     elif(event.find("Departed") != -1):

@@ -74,15 +74,15 @@ class baseInfo:
 
 def KoreanEvent(event):
     if(event.find("Booked") != -1):
-        return ("BKG", "Shipment Booked")
+        return ("BKD", "Shipment Booked")
     elif(event.find("Booking Updated") != -1):
-        return ("BKU", "Booking Updated")
+        return ("BKD", "Booking Updated")
     elif(event.find("Freight on Hand") != -1):
         return ("FOH", "Freight on Hand")
     elif(event.find("Received") != -1):
         return ('RCS', "Received from Shipper")
     elif(event.find("Documents Delivered") != -1):
-        return ('DDC', "Arrival documents delivered to consignee/agent")
+        return ('AWD', "Arrival documents delivered to consignee/agent")
     elif(event.find("Arrived at Terminal") != -1):
         return ('ART', "Arrived at Terminal")
     elif(event.find("Arrived") != -1):

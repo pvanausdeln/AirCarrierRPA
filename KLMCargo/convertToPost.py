@@ -74,7 +74,7 @@ class baseInfo:
 
 def KLMEvent(event):
     if(event.find("BKG") != -1):
-        return ("BKG", "Shipment Booked")
+        return ("BKD", "Shipment Booked")
     elif(event.find("FOH") != -1):
         return ("FOH", "Freight on Hand")
     elif(event.find("RCS") != -1):

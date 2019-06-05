@@ -78,7 +78,7 @@ def SingaporeEvent(event):
     elif(event.find("Freight on Hand") != -1):
         return ('FOH', "Freight On Hand")
     elif(event.find("Cleared By Customs") != -1):
-        return ('CBC', "Cleared by Customs")
+        return ('CCD', "Cleared by Customs")
     elif(event.find("Flight Departed") != -1):
         return ('DEP', "Departed")
     elif(event.find("Flight Arrived") != -1):
@@ -86,7 +86,7 @@ def SingaporeEvent(event):
     elif(event.find("Shipment Ready for Pick-up") != -1):
         return ("NFD", "Consignee/Agent notified of arrival")
     elif(event.find("Shipment Delivered") != -1):
-        return ('DLV', "Delivered")
+        return ('DLV', "Shipment Delivered")
     elif(event.find("Shipment Checked Into Warehouse") != -1):
         return ('CIN', "Checked In")
     elif(event.find("Found Cargo") != -1):
