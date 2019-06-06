@@ -71,53 +71,64 @@ class baseInfo:
     "voyageNumber": None,
     "workOrderNumber": None
     }
+
 def BritishPostEvent(event):
-    if(event.find("RECEIVED ON FLIGHT") != -1):
-        return ("RCF", "RECEIVED ON FLIGHT")
-    elif(event.find("BOOKED") != -1):
-        return ("BKD", "BOOKED")
-    elif(event.find("DELIVERED") != -1):
-        return ("DLV", "DELIVERED")
-    elif(event.find("MANIFESTED") != -1):
-        return ("MAN", "MANIFESTED")
+    if(event.find("Received on Flight") != -1):
+        return ("RCF", "Received from Flight")
     elif(event.find("Arrived") != -1):
-        return ('ARR', "Arrived")
-    elif(event.find("DEPARTED") != -1):
-        return ('DEP', "DEPARTED")
-    elif(event.find("PRE-MANIFESTED") != -1):
-        return ('PMA', "PRE-MANIFESTED")
-    elif(event.find("DOCUMENTATION") != -1):
-        return ('DOC', "DOCUMENTATION")
-    elif(event.find("CLEARED BY CUSTOMS") != -1):
-        return ('CCD', "CLEARED BY CUSTOMS")
-    elif(event.find("RECEIVED") != -1):
-        return ('RCS', "RECEIVED")
+        return ("ARR", "Arrived")
+    elif(event.find("Departed") != -1):
+        return ("DEP", "Departed")
+    elif(event.find("Booked") != -1):
+        return ('BKD', "Shipment Booked")
+    elif(event.find("Delivered") != -1):
+        return ('DLV', "Shipment Delivered")
+    elif(event.find("Manifested") != -1):
+        return ('MAN', "Manifested")
+    elif(event.find("Pre-Manifested") != -1):
+        return ('PMA', "Pre-Manifested")
+    elif(event.find("Documentation") != -1):
+        return ('AWD', "Arrival Documents Delivered")
+    elif(event.find("Cleared by Customs") != -1):
+        return ('CCD', "Customs Cleared")
+    elif(event.find("Received") != -1):
+        return ('RCS', "Received from Shipper")
     return (None, None)
 
 def BritishPost(step):
     with open(step) as json_file:  
         data = json.load(json_file)
     postJson = copy.deepcopy(baseInfo.shipmentEventBase)
-    postJson["resolvedEventSource"] = "AirBridge RPA"
+    postJson["resolvedEventSource"] = "British RPA"
     postJson["reportSource"] = "AirEvent"
     postJson["workOrderNumber"] = data.get("Work Order")
     postJson["shipmentReferenceNumber"] = data.get("Reference Number")
     postJson["unitId"] = data.get("Waybill")
-    postJson["notes"] = ''.join(x for x in data.get("Description") if x in string.printable)
-    postJson["location"] = data.get("Station")
-    postJson["eventCode"], postJson["eventName"] = AirBridgeEvent(data.get("Status"))
+    postJson["location"] = data.get("Airport")
+    postJson["vessel"] = data.get("Flight")
+    postJson["eventCode"], postJson["eventName"] = BritishPostEvent(data.get("Event").strip())
     postJson["carrierName"] = data.get("Air Carrier")
     if(postJson["eventCode"] == None):
         return
-    data["EventTime"] = ''.join(x for x in data["EventTime"] if x in string.printable)
-    postJson["eventTime"] = datetime.datetime.strptime(data.get("EventTime").title(), '%d%b%y%H:%M').strftime('%m-%d-%Y %H:%M:%S')
-    #postJson["weight"] = data.get("Weight")
-    #postJson["quantity"] = data.get("Pieces")
+    dt = datetime.datetime.strptime(data.get("Datetime 2"), "%d/%m/%Y %H:%M")
+    postJson["eventTime"] = dt.strftime('%m-%d-%Y %H:%M:%S')
+    print(json.dumps(postJson))
+    #postJson["weight"] = data.get("Flight").split("Package/s")[0].strip()
+    #postJson["quantity"] = data.get("Flight").split("-")[-1].split("kg")[0].strip()
     headers = {'content-type':'application/json'}
     r = requests.post(baseInfo.postURL, data = json.dumps(postJson), headers = headers, verify = False)
     print(json.dumps(postJson))
     print(r)
     return
+
+def testMain(container): #test main
+    fileList = glob.glob(os.getcwd() + "\\ContainerInformation\\"+container+"Step*.json", recursive = True) #get all the json steps
+    if (not fileList):
+        return
+    fileList = [f for f in fileList if container in f] #set of steps for this number
+    fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
+    for step in fileList:
+        BritishPost(step)
 
 def main(containerList, cwd):
     path=""
@@ -134,4 +145,5 @@ def main(containerList, cwd):
             BritishPost(step)
 
 if __name__ == "__main__":
+    #testMain(sys.argv[1])
     main(sys.argv[1], sys.argv[2])
