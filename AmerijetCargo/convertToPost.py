@@ -71,7 +71,7 @@ class baseInfo:
     "voyageNumber": None,
     "workOrderNumber": None
     }
-def AmerijetPostEvent(Event):
+def AmerijetPostEvent(event):
     if(event.find("Customer Picked up Shipment") != -1):
         return ("DLV", "Customer Picked up Shipment")
     elif(event.find("Customer Picked Up Documents") != -1):
@@ -91,6 +91,7 @@ def AmerijetPostEvent(Event):
     elif(event.find("Released from Customs") != -1):
         return ('CCD', "Released from Customs")
     return (None, None)
+
 def AmerijetPost(step):
     with open(step) as json_file:  
         data = json.load(json_file)

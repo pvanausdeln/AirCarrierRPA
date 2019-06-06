@@ -71,7 +71,7 @@ class baseInfo:
     "voyageNumber": None,
     "workOrderNumber": None
     }
-def AmericanCargoEvent(Event):
+def AmericanCargoEvent(event):
     if(event.find("Delivered") != -1):
         return ("DLV", "Delivered")
     elif(event.find("On Hand") != -1):
@@ -87,11 +87,11 @@ def AmericanCargoEvent(Event):
     elif(event.find("Received") != -1):
         return ('RCS', "Received")
     elif(event.find("Booked") != -1):
-        return ('BKG', "Booked")
+        return ('BKD', "Booked")
     elif(event.find("Offloaded") != -1):
         return ('DIS', "Offloaded")
     elif(event.find("Awaiting Customs Clearance") != -1):
-        return ('ACC', "Awaiting Customs Clearance")
+        return ('CRC', "Reported to Customs")
     return (None, None)
 def AmericanPost(step):
     with open(step) as json_file:  
@@ -106,7 +106,6 @@ def AmericanPost(step):
     postJson["carrierName"] = data.get("Air Carrier")
     if(postJson["eventCode"] == None):
         return
-    data["EventTime"] = ''.join(x for x in data["EventTime"] if x in string.printable)
     #postJson["eventTime"] = datetime.datetime.strptime(data.get("EventTime").title(), '%d%b%y%H:%M').strftime('%m-%d-%Y %H:%M:%S') Get time using data.get(details) by splitting it accordingly.
     #postJson["weight"] = data.get("Weight")
     #postJson["quantity"] = data.get("Pieces/Container")
