@@ -71,32 +71,76 @@ class baseInfo:
     "voyageNumber": None,
     "workOrderNumber": None
     }
-def ANANNipponCargoEvent(Event):
-    return
+
+def ANANipponPostEvent(event):
+    if(event.find("Shipment Booked") != -1):
+        return ("BKD", "Shipment Booked")
+    elif(event.find("Shipment Accepted") != -1):
+        return ("RCS", "Received from Shipper")
+    elif(event.find("Shipment Departed") != -1):
+        return ("DEP", "Shipment Departed")
+    elif(event.find("Freight on Hand") != -1):
+        return ('FOH', "Freight on Hand")
+    elif(event.find("Shipment Manifested") != -1):
+        return ('MAN', "Manifested")
+    #elif(event.find("Predeclaration") != -1):
+    #    return ('PRD', "Predeclaration")
+    #elif(event.find("Matching Cancelled") != -1):
+    #    return ('MHC', "Matching Cancelled")
+    elif(event.find("Flight Arrived") != -1):
+        return ('ARR', "Arrived")
+    elif(event.find("Shipment Arrived") != -1):
+        return ('RCF', "Received from Flight")
+    #elif(event.find("Carry-in is in progress") != -1):
+    #    return ('CAR', "Carry-in is in progress")
+    #elif(event.find("documentation check is done") != -1):
+    #    return ('DCD', "Documentation check is done")
+    #elif(event.find("Matched") != -1):
+    #    return ('MHD', "Matched")
+    elif(event.find("Customs Cleared") != -1):
+        return ('CCD', "Customs Cleared")
+    elif(event.find("Shipment Notified for Delivery") != -1):
+        return ('NFD', "Consignee/Agent Notified")
+    elif(event.find("Shipment Delivered") != -1):
+        return ('DLV', "Shipment Delivered")
+    #elif(event.find("Transhipment Accepted") != -1):
+    #    return ('TFD', "Transhipment Accepted")
+    return (None, None)
+
 def ANANipponPost(step):
     with open(step) as json_file:  
         data = json.load(json_file)
     postJson = copy.deepcopy(baseInfo.shipmentEventBase)
-    postJson["resolvedEventSource"] = "AirBridge RPA"
+    postJson["resolvedEventSource"] = "ANANippon RPA"
     postJson["reportSource"] = "AirEvent"
     postJson["workOrderNumber"] = data.get("Work Order")
     postJson["shipmentReferenceNumber"] = data.get("Reference Number")
     postJson["unitId"] = data.get("Waybill")
-    postJson["notes"] = ''.join(x for x in data.get("Description") if x in string.printable)
-    postJson["location"] = data.get("Station")
-    postJson["eventCode"], postJson["eventName"] = ANANNipponCargoEvent(data.get("Status"))
+    postJson["location"] = data.get("Event").split(" ")[-1]
+    postJson["vessel"] = data.get("Other Info").split("|").strip()
+    postJson["eventCode"], postJson["eventName"] = ANANipponPostEvent(data.get("Event").strip())
     postJson["carrierName"] = data.get("Air Carrier")
     if(postJson["eventCode"] == None):
         return
-    #data["EventTime"] = ''.join(x for x in data["EventTime"] if x in string.printable)
-    postJson["eventTime"] = datetime.datetime.strptime(data.get("EventTime").title(), '%d%b%y%H:%M').strftime('%m-%d-%Y %H:%M:%S')
-    #postJson["weight"] = data.get("Weight")
-    #postJson["quantity"] = data.get("Pieces")
+    dt = datetime.datetime.strptime(data.get("Datetime"), "%d-%m %Y | %H:%M")
+    postJson["eventTime"] = dt.strftime('%m-%d-%Y %H:%M:%S')
+    print(json.dumps(postJson))
+    #postJson["weight"] = data.get("Pieces/Weight").split(" ")[-2]
+    #postJson["quantity"] = data.get("Pieces/Weight").split(" ")[0]
     headers = {'content-type':'application/json'}
     r = requests.post(baseInfo.postURL, data = json.dumps(postJson), headers = headers, verify = False)
     print(json.dumps(postJson))
     print(r)
     return
+
+def testMain(container): #test main
+    fileList = glob.glob(os.getcwd() + "\\ContainerInformation\\"+container+"Step*.json", recursive = True) #get all the json steps
+    if (not fileList):
+        return
+    fileList = [f for f in fileList if container in f] #set of steps for this number
+    fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
+    for step in fileList:
+        ANANipponPost(step)
 
 def main(containerList, cwd):
     path=""
@@ -113,4 +157,5 @@ def main(containerList, cwd):
             ANANipponPost(step)
 
 if __name__ == "__main__":
+    #testMain(sys.argv[1])
     main(sys.argv[1], sys.argv[2])
