@@ -73,17 +73,17 @@ class baseInfo:
     }
 
 def CargoLuxPostEvent(event):
-    if(event.find("Received from Forwarder") != -1):
+    if(event.find("Received from forwarder") != -1):
         return ("FWB", "Received from Forwarder")
     elif(event.find("Freight on Hand") != -1):
         return ("FOH", "Freight on Hand")
-    elif(event.find("Accepted") != -1):
+    elif(event.find("accepted") != -1):
         return ("RCS", "Received from Shipper")
-    elif(event.find("Departed") != -1):
+    elif(event.find("departed") != -1):
         return ('DEP', "Shipment Departed")
     elif(event.find("Arrived") != -1):
         return ('ARR', "Arrived")
-    elif(event.find("Received") != -1):
+    elif(event.find("received") != -1):
         return ('RCF', "Received from Flight")
     elif(event.find("Ready to be picked up") != -1):
         return ('NFD', "Consignee/Agent Notified")
@@ -102,13 +102,12 @@ def CargoLuxPost(step):
     postJson["workOrderNumber"] = data.get("Work Order")
     postJson["shipmentReferenceNumber"] = data.get("Reference Number")
     postJson["unitId"] = data.get("Waybill")
-    postJson["location"] = data.get("Station")
-    postJson["vessel"] = data.get("Flight Details").split(",")[0]
-    postJson["eventCode"], postJson["eventName"] = CargoLuxPostEvent(data.get("EventID"))
+    postJson["location"] = data.get("Location")
+    postJson["eventCode"], postJson["eventName"] = CargoLuxPostEvent(data.get("Event"))
     postJson["carrierName"] = data.get("Air Carrier")
     if(postJson["eventCode"] == None):
         return
-    dt = datetime.datetime.strptime(data.get("Status Date"), "%d %B %Y - %H:%M")
+    dt = datetime.datetime.strptime(data.get("Date"), "%d %B %Y - %H:%M")
     postJson["eventTime"] = dt.strftime('%m-%d-%Y %H:%M:%S')
     print(json.dumps(postJson))
     #postJson["weight"] = data.get("Weight")
