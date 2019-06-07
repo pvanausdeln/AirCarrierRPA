@@ -93,11 +93,12 @@ def AmericanCargoEvent(event):
     elif(event.find("Awaiting Customs Clearance") != -1):
         return ('CRC', "Reported to Customs")
     return (None, None)
+
 def AmericanPost(step):
     with open(step) as json_file:  
         data = json.load(json_file)
     postJson = copy.deepcopy(baseInfo.shipmentEventBase)
-    postJson["resolvedEventSource"] = "AmericanCargo RPA"
+    postJson["resolvedEventSource"] = "American RPA"
     postJson["reportSource"] = "AirEvent"
     postJson["workOrderNumber"] = data.get("Work Order")
     postJson["shipmentReferenceNumber"] = data.get("Reference Number")
@@ -116,6 +117,15 @@ def AmericanPost(step):
     print(r)
     return
 
+def testMain(container): #test main
+    fileList = glob.glob(os.getcwd() + "\\ContainerInformation\\"+container+"Step*.json", recursive = True) #get all the json steps
+    if (not fileList):
+        return
+    fileList = [f for f in fileList if container in f] #set of steps for this number
+    fileList.sort(key=os.path.getmtime) #order steps correctly (by file edit time)
+    for step in fileList:
+        AmericanPost(step)
+
 def main(containerList, cwd):
     path=""
     for x in cwd.split("\\"):
@@ -131,4 +141,5 @@ def main(containerList, cwd):
             AmericanPost(step)
 
 if __name__ == "__main__":
+    #testMain(sys.argv[1])
     main(sys.argv[1], sys.argv[2])
