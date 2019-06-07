@@ -117,12 +117,12 @@ def ANANipponPost(step):
     postJson["shipmentReferenceNumber"] = data.get("Reference Number")
     postJson["unitId"] = data.get("Waybill")
     postJson["location"] = data.get("Event").split(" ")[-1]
-    postJson["vessel"] = data.get("Other Info").split("|").strip()
+    postJson["vessel"] = data.get("Other Info").split("|")[0].strip()
     postJson["eventCode"], postJson["eventName"] = ANANipponPostEvent(data.get("Event").strip())
     postJson["carrierName"] = data.get("Air Carrier")
     if(postJson["eventCode"] == None):
         return
-    dt = datetime.datetime.strptime(data.get("Datetime"), "%d-%m %Y | %H:%M")
+    dt = datetime.datetime.strptime(data.get("Datetime"), "%d-%B %Y | %H:%M")
     postJson["eventTime"] = dt.strftime('%m-%d-%Y %H:%M:%S')
     print(json.dumps(postJson))
     #postJson["weight"] = data.get("Pieces/Weight").split(" ")[-2]
